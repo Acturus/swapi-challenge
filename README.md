@@ -18,7 +18,7 @@ La aplicación utiliza Amazon DynamoDB como base de datos para almacenar informa
 
 #### Swagger
 
-La documentación de la API está implementada con Swagger y se puede acceder a ella mediante la ruta [#](/api/v1/docs/). Aunque actualmente está presentando unos inconvenientes mostrando los endpoint existentes, por lo tanto se detallan más abajo.
+La documentación de la API está implementada con Swagger y se puede acceder a ella mediante la ruta `/api/v1/docs/`. Aunque actualmente está presentando unos inconvenientes mostrando los endpoint existentes, por lo tanto se detallan más abajo.
 
 #### Descripción de Endpoints
 
