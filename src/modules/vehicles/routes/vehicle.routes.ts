@@ -10,6 +10,28 @@ import { param } from 'express-validator';
 const VehicleRoutes = Router();
 const vehicle = container.resolve<IVehicleController>(KEYS.IVehicleController);
 
+/**
+ *  @openapi
+ *  /api/v1/vehicles/{id}:
+ *   get:
+ *     tags:
+ *      - VehicleRoutes
+ *    summary: Datos de un vehículo
+ *    description: Se obtiene la información de un vehículo desde la swapi
+ *    responses:
+ *      200:
+ *       description: OK
+ *       content:
+ *          application/json:
+ *           schema:
+ *            $ref: '#/components/schemas/VehicleResponse'
+ *      400:
+ *       description: Bad Request
+ *       content:
+ *         application/json:
+ *          schema:
+ *           $ref: '#/components/schemas/ErrorResponse' 
+ */
 VehicleRoutes.get('/:id', [
     validate([
         param("id").isInt({ min: 1 }).withMessage("Id no válido"),

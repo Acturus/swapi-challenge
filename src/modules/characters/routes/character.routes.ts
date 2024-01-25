@@ -10,6 +10,34 @@ import { ICharacterController } from '../contracts/character.contracts';
 const CharacterRoutes = Router();
 const character = container.resolve<ICharacterController>(KEYS.ICharacterController);
 
+/**
+ *  @openapi
+ *  /api/v1/characters/list:
+ *   get:
+ *    tags:
+ *     - CharacterRoutes
+ *    summary: Listado de personajes
+ *    description: Se obtiene un listado de personajes desde la fuente de datos
+ *    parameters:
+ *     - in: query
+ *       name: source
+ *       schema:
+ *         type: string
+ *       description: Fuente de datos (local|swapi)
+ *    responses:
+ *     200:
+ *       description: OK
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/CharacterListResponse'
+ *     400:
+ *       description: Bad Request
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/ErrorResponse'
+ */
 CharacterRoutes.get('/list', [
     validate([
         query('source').optional({ nullable: true }).isIn(['local', 'swapi']).withMessage('Ingrese una fuente de datos válida')
@@ -17,6 +45,33 @@ CharacterRoutes.get('/list', [
     asyncHandler((req: Request, res: Response) => character.list(req, res))
 ]);
 
+/**
+ *  @openapi
+ *  /api/v1/characters/add:
+ *   post:
+ *    tags:
+ *     - CharacterRoutes
+ *    summary: Agregar un personaje
+ *    description: Se agrega un personaje a la base de datos local
+ *    requestBody:
+ *     content:
+ *       application/json:
+ *         schema:
+ *           $ref: '#/components/schemas/CharacterCreateRequest'
+ *    responses:
+ *     200:
+ *       description: OK
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/CharacterCreateResponse'
+ *     400:
+ *       description: Bad Request
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/ErrorResponse'
+ */
 CharacterRoutes.post('/add', [
     validate([
         body('nombre').isLength({ min:5 }).withMessage('Ingrese un nombre válido'),
