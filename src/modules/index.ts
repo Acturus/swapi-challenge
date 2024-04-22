@@ -7,7 +7,7 @@ export const loadModules = (): Router =>
 {
 	const mainRouter = Router();
     
-    mainRouter.use("/character", CharacterRoutes);
+    mainRouter.use("/characters", CharacterRoutes);
     mainRouter.use("/vehicles", VehicleRoutes);
 
     return mainRouter;

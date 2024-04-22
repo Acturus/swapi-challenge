@@ -201,16 +201,7 @@ const swaggerDefinition: OAS3Definition = {
                     }
                 }
             },
-            VehicleListRequest: {
-                type: "params",
-                properties: {
-                    id: {
-                        type: "number",
-                        example: "1"
-                    }
-                }
-            },
-            VehicleListResponse: {
+            VehicleResponse: {
                 type: "object",
                 properties: {
                     res: {type: "boolean", example: true},
@@ -229,125 +220,9 @@ const swaggerDefinition: OAS3Definition = {
 
 const swaggerOptions: OAS3Options = {
     swaggerDefinition,
-    apis: [],
-    paths: {
-        "/api/v1/vehicles/{id}": {
-            get: {
-                tags: ["VehicleRoutes"],
-                summary: "Datos de un vehículo",
-                description: "Se obtiene la información de un vehículo desde la swapi",
-                parameters: [
-                    {
-                        in: "path",
-                        name: "id",
-                        required: true,
-                        schema: {
-                            type: "string",
-                        },
-                    },
-                ],
-                responses: {
-                    200: {
-                        description: "OK",
-                        content: {
-                            "application/json": {
-                                schema: {
-                                    $ref: "#/components/schemas/VehicleListResponse",
-                                },
-                            },
-                        },
-                    },
-                    400: {
-                        description: "Bad Request",
-                        content: {
-                            "application/json": {
-                                schema: {
-                                    $ref: "#/components/schemas/ErrorResponse",
-                                },
-                            },
-                        },
-                    },
-                },
-            },
-        },
-        "/api/v1/characters/list": {
-            get: {
-                tags: ["CharacterRoutes"],
-                summary: "Listado de personajes",
-                description: "Se obtiene un listado de personajes desde la fuente de datos",
-                parameters: [
-                    {
-                        in: "query",
-                        name: "source",
-                        schema: {
-                            type: "string",
-                        },
-                        description: "Fuente de datos (local|swapi)",
-                    },
-                ],
-                responses: {
-                    200: {
-                        description: "OK",
-                        content: {
-                            "application/json": {
-                                schema: {
-                                    $ref: "#/components/schemas/CharacterListResponse",
-                                },
-                            },
-                        },
-                    },
-                    400: {
-                        description: "Bad Request",
-                        content: {
-                            "application/json": {
-                                schema: {
-                                    $ref: "#/components/schemas/ErrorResponse",
-                                },
-                            },
-                        },
-                    },
-                },
-            },
-        },
-        "/api/v1/characters/add": {
-            post: {
-                tags: ["CharacterRoutes"],
-                summary: "Agregar un personaje",
-                description: "Se agrega un personaje a la base de datos local",
-                requestBody: {
-                    content: {
-                        "application/json": {
-                            schema: {
-                                $ref: "#/components/schemas/CharacterCreateRequest",
-                            },
-                        },
-                    },
-                },
-                responses: {
-                    200: {
-                        description: "OK",
-                        content: {
-                            "application/json": {
-                                schema: {
-                                    $ref: "#/components/schemas/CharacterCreateResponse",
-                                },
-                            },
-                        },
-                    },
-                    400: {
-                        description: "Bad Request",
-                        content: {
-                            "application/json": {
-                                schema: {
-                                    $ref: "#/components/schemas/ErrorResponse",
-                                },
-                            },
-                        },
-                    },
-                },
-            },
-        },
-    }
+    apis: [
+        "src/modules/**/routes/*.js",
+    ]
 }
 
 export default swaggerJSDoc(swaggerOptions);

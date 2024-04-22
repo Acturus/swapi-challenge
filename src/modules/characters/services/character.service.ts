@@ -53,7 +53,7 @@ export class CharacterService implements ICharacterService
         return lista.map((item: ICharacterSwapi) =>
         {
             const vehiculos = item.vehicles.map((vehiculo: string) => {
-                return vehiculo.replace('https://swapi.py4e.com/api', process.env.API_URL!+'/api/v1');
+                return vehiculo.replace('https://swapi.py4e.com/api', process.env.API_URL ?? 'http://localhost:3000' + '/api/v1');
             })
             
             return {

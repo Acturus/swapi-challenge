@@ -23,7 +23,8 @@ const character = container.resolve<ICharacterController>(KEYS.ICharacterControl
  *       name: source
  *       schema:
  *         type: string
- *       description: Fuente de datos (local|swapi)
+ *       description: Fuente de datos (local ó swapi)
+ *       example: local
  *    responses:
  *     200:
  *       description: OK

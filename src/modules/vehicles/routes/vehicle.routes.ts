@@ -14,23 +14,31 @@ const vehicle = container.resolve<IVehicleController>(KEYS.IVehicleController);
  *  @openapi
  *  /api/v1/vehicles/{id}:
  *   get:
- *     tags:
- *      - VehicleRoutes
+ *    tags:
+ *     - VehicleRoutes
  *    summary: Datos de un vehículo
  *    description: Se obtiene la información de un vehículo desde la swapi
+ *    parameters:
+ *     - in: path
+ *       name: id
+ *       schema:
+ *         type: integer
+ *       required: true
+ *       description: Id del vehículo
+ *       example: 4
  *    responses:
- *      200:
+ *     200:
  *       description: OK
  *       content:
- *          application/json:
+ *         application/json:
  *           schema:
- *            $ref: '#/components/schemas/VehicleResponse'
- *      400:
+ *             $ref: '#/components/schemas/VehicleResponse'
+ *     400:
  *       description: Bad Request
  *       content:
  *         application/json:
- *          schema:
- *           $ref: '#/components/schemas/ErrorResponse' 
+ *           schema:
+ *             $ref: '#/components/schemas/ErrorResponse' 
  */
 VehicleRoutes.get('/:id', [
     validate([
